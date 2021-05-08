@@ -4,7 +4,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 /**
  * Classe responsável por fazer alterações no banco de dados.
  */
