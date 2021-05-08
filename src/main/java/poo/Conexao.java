@@ -13,6 +13,7 @@ public class Conexao {
             Class.forName("org.sqlite.JDBC");
             String url = "jdbc:sqlite:src/main/java/database/database.db";
             this.conect= DriverManager.getConnection(url);
+            
         }catch(SQLException e ){
             System.err.println(e.getMessage());
             return false;
