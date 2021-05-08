@@ -1,9 +1,11 @@
 package poo;
 
-public class Main{
+public class Main {
 
     public static void main(String[] args){
-        Conexao Conexao = new Conexao();
-        Conexao.conect();
+
+        Conexao conexaoSQLite = new Conexao();
+        CriarBancoSQLite criarBancoSQLite = new CriarBancoSQLite(conexaoSQLite);
+        criarBancoSQLite.criarTabelaPessoa();
     }
 }
