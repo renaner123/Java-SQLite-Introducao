@@ -1,14 +1,19 @@
 package poo;
 
+/**
+ * Classe responsável por criar uma Pessoa
+ */
 public class Pessoa {
 
     private int id;
     private String nome;
     private int idade;
 
+
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
