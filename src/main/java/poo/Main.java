@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
 
+        
         Scanner teclado_int = new Scanner(System.in);
         Scanner teclado_string = new Scanner(System.in);
         Database database = new Database();
