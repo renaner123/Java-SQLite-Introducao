@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Main {
 
     public static void main(String[] args) throws SQLException {
@@ -76,7 +77,6 @@ public class Main {
                 database.deletePessoa(op);
             }
         }
-
 
         }catch (java.util.InputMismatchException e){
             System.out.printf("Erro " + e.toString() + " ### " + "Digite um número interno \n");

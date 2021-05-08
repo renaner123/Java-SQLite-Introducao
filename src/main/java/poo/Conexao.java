@@ -2,18 +2,25 @@ package poo;
 
 import java.sql.*;
 
+/**
+ * Classe para estabelecer uma conexão com banco de dados
+ */
+
 public class Conexao {
 
     private Connection conexao;
 
     /**
-     * Método para se conectar ao banco de dados
+     * Método para se conectar a um caminho contendo banco de dados SQLite
      * @return
      */
     public boolean conect(){
         try{
+            //forName necessário para localizar o driver do jdbc
             Class.forName("org.sqlite.JDBC");
-            String url = "jdbc:sqlite:src/main/java/database/database.db";
+            //caminho onde se encontro o banco de dados(.db)
+            String url = "jdbc:sqlite:src/main/java/database/database2.db";
+            //faz a conexão com o banco de dados
             this.conexao = DriverManager.getConnection(url);
         }catch(SQLException e ){
             System.err.println(e.getMessage());
@@ -27,12 +34,13 @@ public class Conexao {
     }
 
     /**
-     * Método para desconectar do banco de dados
+     * Método para se desconectar um banco de dados SQLites
      * @return
      */
     public boolean desconect(){
 
         try{
+            //se a conexão não estiver fechada, fecha a conexão.
             if(this.conexao.isClosed() == false){
                 this.conexao.close();
             }
@@ -40,16 +48,17 @@ public class Conexao {
             System.err.println(e.getMessage());
             return false;
         }
-        System.out.printf("Desconectou");
+        System.out.println("Desconectou");
         return true;
     }
 
     /**
      * usado para preparar o sql para inserir valores no banco
-     * @param sql recebe um valor a ser inserido no sql
+     * @param sql recebe os campos e ações a serem feitos no banco de dados
      * @return
      */
     public PreparedStatement criarPreparedStatement(String sql){
+        //Necessário para fazer alterações no banco de dados.
         try {
             return this.conexao.prepareStatement(sql);
         }catch(SQLException e){
@@ -57,12 +66,12 @@ public class Conexao {
         }
     }
 
-
     /**
      * Cria os statments para os sqls serem execetutados
      * @return
      */
     public Statement criarStatement(){
+        //Necessário para inserir dados no banco de dados
         try {
             return this.conexao.createStatement();
         }catch(SQLException e){

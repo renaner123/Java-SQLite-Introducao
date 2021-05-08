@@ -3,6 +3,10 @@ package poo;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Classe responsável por criar uma nova tabela no banco de dados.
+ * Nesse caso, cria uma Tabela Pessoa com ID, Nome e Idade
+ */
 public class CriarBancoSQLite {
     private final Conexao conexaoSQLite;
 
@@ -11,7 +15,7 @@ public class CriarBancoSQLite {
     }
 
     /**
-     * Cria uma tabela pessoa com campos fixos
+     * Cria uma tabela pessoa com campos fixos(ID, Nome e Idade)
      */
     public void criarTabelaPessoa(){
         String sql = "CREATE TABLE IF NOT EXISTS tbl_pessoa"
@@ -24,8 +28,11 @@ public class CriarBancoSQLite {
         boolean conectou = false;
 
         try{
+            //conecta ao banco de dados
             conectou = conexaoSQLite.conect();
+            //cria um statement para poder inserir informações no banco de dados
             Statement stmt = conexaoSQLite.criarStatement();
+            //executa as intruções sql para criar a tabela
             stmt.execute(sql);
             System.out.println("Criou tabela pessoa");
         }catch (SQLException e){
