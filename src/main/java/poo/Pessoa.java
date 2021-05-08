@@ -9,7 +9,6 @@ public class Pessoa {
     private String nome;
     private int idade;
 
-
     public int getId() {
         return id;
     }
