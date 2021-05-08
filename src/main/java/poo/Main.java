@@ -1,47 +1,95 @@
 package poo;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
 
         Conexao conexaoSQLite = new Conexao();
-        //tabela de dados
-        ResultSet resultSet = null;
-        //prepara o sql
-        Statement statement = null;
 
         conexaoSQLite.conect();
 
-        String query = "SELECT * FROM tbl_pessoa;";
+        ResultSet resultSet = null;
+        //Como vai ser passado parâmetros, precisa usar prepareStatment
+        PreparedStatement preparedStatement = null;
 
-        statement = conexaoSQLite.criarStatement();
+        String sql = "SELECT * "
+                + " FROM tbl_pessoa"
+                + " WHERE id = ?";
 
         try{
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()){
-                System.out.println("DADOS DAS PESSOAS");
-                System.out.println("id = " + resultSet.getInt("id"));
-                System.out.println("nome = " + resultSet.getString("nome"));
-                System.out.println("idade = " + resultSet.getInt("idade"));
-                System.out.println("--------");
+            int idPessoa = 2;
+
+            preparedStatement = conexaoSQLite.criarPreparedStatement(sql);
+            preparedStatement.setInt(1,idPessoa);
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                System.out.println("PESSOA SELECIONADA");
+                System.out.println("ID = " + resultSet.getInt("id"));
+                System.out.println("NOME = " + resultSet.getString("nome"));
+                System.out.println("IDADE = " + resultSet.getInt("idade"));
             }
 
         }catch (SQLException e){
-
+            e.printStackTrace();
         }finally {
             try{
                 resultSet.close();
-                statement.close();
                 conexaoSQLite.desconect();
-            }catch (SQLException ex){
-                System.out.println("Erro ao fechar");
+            }catch(SQLException ex){
+                ex.printStackTrace();
             }
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //tabela de dados.
+//        ResultSet resultSet = null;
+//        //prepara o sql
+//        Statement statement = null;
+//
+//        conexaoSQLite.conect();
+//
+//        String query = "SELECT * FROM tbl_pessoa;";
+//
+//        statement = conexaoSQLite.criarStatement();
+//
+//        try{
+//            resultSet = statement.executeQuery(query);
+//            while (resultSet.next()){
+//                System.out.println("DADOS DAS PESSOAS");
+//                System.out.println("id = " + resultSet.getInt("id"));
+//                System.out.println("nome = " + resultSet.getString("nome"));
+//                System.out.println("idade = " + resultSet.getInt("idade"));
+//                System.out.println("--------");
+//            }
+//
+//        }catch (SQLException e){
+//
+//        }finally {
+//            try{
+//                resultSet.close();
+//                statement.close();
+//                conexaoSQLite.desconect();
+//            }catch (SQLException ex){
+//                System.out.println("Erro ao fechar");
+//            }
+//        }
+
+
 
 //        CriarBancoSQLite criarBancoSQLite = new CriarBancoSQLite(conexaoSQLite);
 //        criarBancoSQLite.criarTabelaPessoa();
