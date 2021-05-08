@@ -1,14 +1,15 @@
 package poo;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Conexao {
 
     private Connection conexao;
 
+    /**
+     * Método para se conectar ao banco de dados
+     * @return
+     */
     public boolean conect(){
         try{
             Class.forName("org.sqlite.JDBC");
@@ -25,6 +26,10 @@ public class Conexao {
         return true;
     }
 
+    /**
+     * Método para desconectar do banco de dados
+     * @return
+     */
     public boolean desconect(){
 
         try{
@@ -39,6 +44,24 @@ public class Conexao {
         return true;
     }
 
+    /**
+     * usado para preparar o sql para inserir valores no banco
+     * @param sql recebe um valor a ser inserido no sql
+     * @return
+     */
+    public PreparedStatement criarPreparedStatement(String sql){
+        try {
+            return this.conexao.prepareStatement(sql);
+        }catch(SQLException e){
+            return null;
+        }
+    }
+
+
+    /**
+     * Cria os statments para os sqls serem execetutados
+     * @return
+     */
     public Statement criarStatement(){
         try {
             return this.conexao.createStatement();
@@ -47,6 +70,10 @@ public class Conexao {
         }
     }
 
+    /**
+     * retonar objeto da conexao
+     * @return
+     */
     public Connection getConexao(){
         return this.conexao;
     }
