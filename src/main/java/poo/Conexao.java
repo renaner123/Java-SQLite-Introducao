@@ -1,11 +1,9 @@
 package poo;
 
 import java.sql.*;
-
 /**
  * Classe para estabelecer uma conexão com banco de dados
  */
-
 public class Conexao {
 
     private Connection conexao;
