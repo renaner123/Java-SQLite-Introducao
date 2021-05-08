@@ -10,27 +10,20 @@ public class Main {
 
         conexaoSQLite.conect();
 
-        ResultSet resultSet = null;
         //Como vai ser passado parâmetros, precisa usar prepareStatment
         PreparedStatement preparedStatement = null;
 
-        String sql = "UPDATE tbl_pessoa"
-                + " SET "
-                + " nome = ?,"
-                + " idade = ?"
-                + " WHERE id = ?";
+        String sql = "DELETE FROM tbl_pessoa"
+                + " WHERE id = ?;";
 
         try{
-            String nome = "Jose";
-            int idade = 40;
             int id = 2;
-
             preparedStatement = conexaoSQLite.criarPreparedStatement(sql);
-            preparedStatement.setString(1,nome);
-            preparedStatement.setInt(2,idade);
-            preparedStatement.setInt(3,id);
+            preparedStatement.setInt(1,id);
 
-            preparedStatement.executeUpdate();
+            int linhaDeletadas = preparedStatement.executeUpdate();
+
+            System.out.println("FORAM DELETADAS" + linhaDeletadas + " REGISTROS");
 
         }catch (SQLException e){
             e.printStackTrace();
