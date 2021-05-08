@@ -2,7 +2,6 @@ package poo;
 
 import java.sql.SQLException;
 import java.sql.Statement;
-
 /**
  * Classe responsável por criar uma nova tabela no banco de dados.
  * Nesse caso, cria uma Tabela Pessoa com ID, Nome e Idade
