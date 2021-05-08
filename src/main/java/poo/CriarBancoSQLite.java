@@ -10,6 +10,9 @@ public class CriarBancoSQLite {
         conexaoSQLite = pConexaoSQLite;
     }
 
+    /**
+     * Cria uma tabela pessoa com campos fixos
+     */
     public void criarTabelaPessoa(){
         String sql = "CREATE TABLE IF NOT EXISTS tbl_pessoa"
                 + "("
@@ -28,6 +31,7 @@ public class CriarBancoSQLite {
         }catch (SQLException e){
             System.err.println(e.getMessage());
         }finally {
+            // Sempre bom fechar a conexão.
             if(conectou){
                 conexaoSQLite.desconect();
             }
