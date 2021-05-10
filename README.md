@@ -1,6 +1,6 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/renaner123/Java-SQLite-Introducao/blob/master/LICENSE)
 
-# Exemplos de Java com SQLite 
+# Java & SQLite 
 
 Exemplos de utilização do SQLite usando jdbc em JAVA usando o software IntelliJ IDEA em um projeto Gradle.
 
@@ -8,12 +8,12 @@ Exemplos de utilização do SQLite usando jdbc em JAVA usando o software Intelli
 
 - [x] Criar tabela
 - [x] Inserir dado na tabela
-- [x] Alterarar dado da tabela
+- [x] Alterar dado da tabela
 - [x] Deletar dado da tabela
 
 
 ## 🚀 Execução
-Para executar esta aplicação, bata executar a classe Main. 
+Para executar esta aplicação, basta executar a classe Main. 
 
 Será apresentado as seguintes opções:
 
